@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="./styles.css" />
+		<title>Rock, Paper, Scissors</title>
+	</head>
+	<body>
+		<header class="main-header">
+			<h1>
+				<span class="red">Rock</span> <span class="green">Paper</span>
+				<span class="blue">Scissors</span>
+			</h1>
+		</header>
+
+		<main>
+			<div class="container">
+				<section class="game-text">
+					<p>
+						As you slowly awaken from your slumber, you are faced with the
+						BIGGEST decision of your feeble life.... <br />
+						ROCK... PAPER... or SCISSORS?
+					</p>
+				</section>
+
+				<section class="battle-text">
+					<p class="player-text">
+						You slowly reach into your pocket to find your weapon...
+					</p>
+
+					<p class="computer-text">
+						Your opponent eagerly awaits for your decision...
+					</p>
+
+					<p class="result">_-_-_-_-_-_-_-_-_</p>
+				</section>
+
+				<section class="choices">
+					<p id="rock" class="choice">✊</p>
+					<p id="paper" class="choice">📃</p>
+					<p id="scissors" class="choice">✂</p>
+				</section>
+
+				<section class="battle">
+					<div class="player-details">
+						<h2 class="score-title">Player Score</h2>
+						<h3 class="player-points"></h3>
+					</div>
+
+					<div class="computer-details">
+						<h2 class="score-title">Computer Score</h2>
+						<h3 class="computer-points"></h3>
+					</div>
+				</section>
+			</div>
+		</main>
+		<script src="./index.js"></script>
+	</body>
+</html>

@@ -1,0 +1,127 @@
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
+
+/* Global Styles */
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background-color: rgb(213, 227, 228);
+	line-height: 1.5;
+	font-family: 'Silkscreen', cursive;
+}
+
+.container {
+	width: 70%;
+	margin: auto;
+}
+
+.main-header {
+	text-align: center;
+	margin-top: 20px;
+}
+
+.main-header .red {
+	color: #b30009;
+}
+
+.main-header .green {
+	color: #c1cf00;
+}
+
+.main-header .blue {
+	color: #003ad8;
+}
+
+.game-text,
+.battle-text {
+	margin: 30px;
+	text-align: center;
+	font-size: 18px;
+}
+
+.player-text span {
+	text-decoration: underline;
+	color: #b30009;
+}
+
+.computer-text span {
+	text-decoration: underline;
+	color: #003ad8;
+}
+
+.choices {
+	display: flex;
+	justify-content: space-around;
+}
+
+.choice {
+	font-size: 60px;
+	filter: drop-shadow(0);
+}
+
+.choice:hover {
+	cursor: pointer;
+}
+
+#rock::after {
+	display: block;
+	content: '';
+	background: #b30009;
+	height: 4px;
+	margin-bottom: 10px;
+	transform: scaleX(0);
+	transition: all 0.2s ease;
+}
+
+#paper::after {
+	display: block;
+	content: '';
+	background: #c1cf00;
+	height: 4px;
+	margin-bottom: 10px;
+	transform: scaleX(0);
+	transition: all 0.2s ease;
+}
+
+#scissors::after {
+	display: block;
+	content: '';
+	background: #003ad8;
+	height: 4px;
+	margin-bottom: 10px;
+	transform: scaleX(0);
+	transition: all 0.2s ease;
+}
+
+#rock:hover::after,
+#paper:hover::after,
+#scissors:hover::after {
+	transform: scaleX(1);
+}
+
+.battle {
+	display: flex;
+	justify-content: space-around;
+	margin: 50px 0 20px;
+}
+
+.score-normal {
+	font-size: 50px;
+	text-align: center;
+}
+
+.score-win {
+	font-size: 55px;
+	text-align: center;
+	color: #c1cf00;
+}
+
+.score-loss {
+	font-size: 40px;
+	text-align: center;
+	color: #b30009;
+}
