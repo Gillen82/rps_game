@@ -60,7 +60,6 @@ body {
 
 .choice {
 	font-size: 60px;
-	filter: drop-shadow(0);
 }
 
 .choice:hover {
@@ -106,7 +105,7 @@ body {
 .battle {
 	display: flex;
 	justify-content: space-around;
-	margin: 50px 0 20px;
+	margin: 20px 0;
 }
 
 .score-normal {
@@ -115,13 +114,31 @@ body {
 }
 
 .score-win {
-	font-size: 55px;
 	text-align: center;
 	color: #c1cf00;
 }
 
 .score-loss {
-	font-size: 40px;
 	text-align: center;
 	color: #b30009;
+}
+
+.reset-game {
+	display: flex;
+	justify-content: center;
+	padding: 10px 0;
+}
+
+.reset {
+	padding: 6px 10px;
+	border: none;
+	border-radius: 2px;
+	background-color: #003ad8;
+	color: #fff;
+	transition: all 0.2s ease;
+}
+
+.reset:hover {
+	cursor: pointer;
+	background-color: #b30009;
 }

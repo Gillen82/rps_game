@@ -10,6 +10,7 @@ const game = () => {
 	let computerText = document.querySelector('.computer-text');
 	let result = document.querySelector('.result');
 	const weapons = document.querySelectorAll('.choices');
+	const reset = document.querySelector('.reset');
 
 	playerPoints.innerText = playerScore;
 	computerPoints.innerText = computerScore;
@@ -111,6 +112,27 @@ const game = () => {
 	};
 
 	startBattle();
+
+	const resetGame = () => {
+		console.log('Reset');
+
+		playerPoints.classList.remove('score-win', 'score-loss');
+		playerPoints.classList.add('score-normal');
+		computerPoints.classList.remove('score-win', 'score-loss');
+		computerPoints.classList.add('score-normal');
+
+		playerScore = 0;
+		playerPoints.innerText = playerScore;
+		computerScore = 0;
+		computerPoints.innerText = computerScore;
+
+		playerText.innerHTML = `You slowly reach into your pocket to find your weapon...`;
+		computerText.innerHTML = `Your opponent eagerly awaits for your decision...`;
+
+		startBattle();
+	};
+
+	reset.addEventListener('click', resetGame);
 };
 
 game();
