@@ -1,138 +1,135 @@
-const game = () => {
-	let playerScore = 0;
-	let computerScore = 0;
-	let winner;
+const gameText = document.querySelector('.game-text');
+const weaponChoices = document.querySelectorAll('.choice');
+const playerScore = document.querySelector('.player-score');
+const computerScore = document.querySelector('.computer-score');
+const playerText = document.querySelector('.player-text');
+const computerText = document.querySelector('.computer-text');
+const resultText = document.querySelector('.result-text');
+const btnReset = document.querySelector('.btn-reset');
 
-	// Game Components
-	let playerPoints = document.querySelector('.player-points');
-	let computerPoints = document.querySelector('.computer-points');
-	let playerText = document.querySelector('.player-text');
-	let computerText = document.querySelector('.computer-text');
-	let result = document.querySelector('.result');
-	const weapons = document.querySelectorAll('.choices');
-	const reset = document.querySelector('.reset');
+let playing,
+	playerCurrScore,
+	comCurrScore,
+	playerWeapon,
+	computerWeapon,
+	winner;
 
-	playerPoints.innerText = playerScore;
-	computerPoints.innerText = computerScore;
+const initGame = () => {
+	// Initialize Values
+	playing = true;
+	playerCurrScore = 0;
+	comCurrScore = 0;
+	playerWeapon = null;
+	computerWeapon = null;
 
-	// Style Scores
-	playerPoints.classList.add('score-normal');
-	computerPoints.classList.add('score-normal');
+	// Update Game Text
+	playerScore.textContent = 0;
+	computerScore.textContent = 0;
+	playerText.textContent =
+		'You slowly reach into your pocket to find your weapon...';
+	computerText.textContent =
+		'Your opponent eagerly awaits for your decision...';
+	resultText.textContent = '_-_-_-_-_-_-_-_-_';
 
-	// Player Selection
-	const startBattle = () => {
-		//Computer Selection
-		const computerSelection = () => {
-			const weapons = ['rock', 'paper', 'scissors'];
-			const choice = Math.floor(Math.random() * weapons.length);
-			const computerWeapon = weapons[choice];
-			return computerWeapon;
-		};
-
-		// Choose Winner
-		const chooseWinner = (res, win, play) => {
-			win = play;
-
-			// Add Point to winner and reset the round
-			if (win === 'player') {
-				res.innerHTML = `You have <span>won</span>... for now!`;
-				++playerScore;
-				playerPoints.innerText = playerScore;
-				computerSelection();
-			} else if (win === 'computer') {
-				res.innerHTML = `You have <span>fallen</span>... but rise back to your feet!`;
-				++computerScore;
-				computerPoints.innerText = computerScore;
-				computerSelection();
-			} else {
-				computerSelection();
-			}
-
-			checkScores(playerScore, computerScore);
-		};
-
-		// Check Scores
-		const checkScores = (pScore, cScore) => {
-			if (pScore === 5 || cScore === 5) {
-				computerWeapon = null;
-				weapons.forEach((weapon) => {
-					weapon.removeEventListener('click', selectWeapons);
-				});
-
-				if (pScore === 5) {
-					playerPoints.classList.add('score-win');
-					computerPoints.classList.add('score-loss');
-					playerText.innerHTML = `YOU ARE VICTORIOUS, BUT DON'T GET CARRIED AWAY!`;
-					computerText.innerHTML = `THIS IS ONLY THE BEGINNING OF MY CODING JOURNEY!!`;
-					result.innerText = '_-_-_-_-_-_-_-_-_';
-				} else {
-					computerPoints.classList.add('score-win');
-					playerPoints.classList.add('score-loss');
-					playerText.innerHTML = `YOU ARE WEAK AND HAVE FALLEN TO A SIMPLE COMPUTER GAME!`;
-					computerText.innerHTML = `IMAGINE WHAT I COULD DO WITH MORE EXPERIENCE!!`;
-					result.innerText = '_-_-_-_-_-_-_-_-_';
-				}
-			}
-		};
-
-		// Select Weapons
-		function selectWeapons(e) {
-			const playerWeapon = e.target.id;
-			let computerWeapon = computerSelection();
-
-			playerText.innerHTML = `You have chosen the mighty <span>${playerWeapon}</span> as your weapon!`;
-			computerText.innerHTML = `Your opponent has chosen <span>${computerWeapon}</span>!`;
-
-			switch (playerWeapon) {
-				case computerWeapon:
-					result.innerHTML = `The battle ends in a <span>draw</span>!`;
-					winner = null;
-					break;
-				case 'rock':
-					computerWeapon === 'paper'
-						? chooseWinner(result, winner, 'computer')
-						: chooseWinner(result, winner, 'player');
-					break;
-				case 'paper':
-					computerWeapon === 'scissors'
-						? chooseWinner(result, winner, 'computer')
-						: chooseWinner(result, winner, 'player');
-					break;
-				case 'scissors':
-					computerWeapon === 'rock'
-						? chooseWinner(result, winner, 'computer')
-						: chooseWinner(result, winner, 'player');
-					break;
-			}
-		}
-
-		weapons.forEach((weapon) => {
-			weapon.addEventListener('click', selectWeapons);
-		});
-	};
-
-	startBattle();
-
-	const resetGame = () => {
-		console.log('Reset');
-
-		playerPoints.classList.remove('score-win', 'score-loss');
-		playerPoints.classList.add('score-normal');
-		computerPoints.classList.remove('score-win', 'score-loss');
-		computerPoints.classList.add('score-normal');
-
-		playerScore = 0;
-		playerPoints.innerText = playerScore;
-		computerScore = 0;
-		computerPoints.innerText = computerScore;
-
-		playerText.innerHTML = `You slowly reach into your pocket to find your weapon...`;
-		computerText.innerHTML = `Your opponent eagerly awaits for your decision...`;
-
-		startBattle();
-	};
-
-	reset.addEventListener('click', resetGame);
+	// Update Classes
+	playerScore.classList.remove('score-win', 'score-loss');
+	computerScore.classList.remove('score-win', 'score-loss');
 };
 
-game();
+initGame();
+
+// Computer Weapon Choice
+const computerSelection = () => {
+	const weapons = ['rock', 'paper', 'scissors'];
+	const choice = Math.floor(Math.random() * weapons.length);
+	computerWeapon = weapons[choice];
+};
+
+// Game Win Conditions
+const gameWin = (playerWeapon, computerWeapon, winner) => {
+	if (playing) {
+		if (playerWeapon === computerWeapon) {
+			return (winner = 'draw');
+		}
+
+		switch (playerWeapon) {
+			case 'rock':
+				computerWeapon === 'paper'
+					? (winner = 'computer')
+					: (winner = 'player');
+				return winner;
+			case 'paper':
+				computerWeapon === 'scissors'
+					? (winner = 'computer')
+					: (winner = 'player');
+				return winner;
+			case 'scissors':
+				computerWeapon === 'rock' ? (winner = 'computer') : (winner = 'player');
+				return winner;
+		}
+	}
+};
+
+// Award point to winner
+const awardPoint = (winner) => {
+	if (playing) {
+		switch (winner) {
+			case 'player':
+				playerCurrScore++;
+				playerScore.textContent = playerCurrScore;
+				resultText.textContent =
+					'You have won this round, but the battle continues...';
+				break;
+			case 'computer':
+				comCurrScore++;
+				computerScore.textContent = comCurrScore;
+				resultText.textContent =
+					'You fall to your knees, but arise to continue the fight...';
+				break;
+			case 'draw':
+				resultText.textContent =
+					'You clash weapons, but both stand in defiance!';
+		}
+
+		if (playerCurrScore === 5 || comCurrScore === 5) {
+			playing = false;
+
+			if (playerCurrScore === 5) {
+				playerText.textContent = 'As you strike your oponent...';
+				computerText.textContent = 'They fall defeated...';
+				resultText.textContent = 'But this is only the beginning...';
+				playerScore.classList.add('score-win');
+				computerScore.classList.add('score-loss');
+			}
+			if (comCurrScore === 5) {
+				playerText.textContent = 'You are weak...';
+				computerText.textContent = 'You have been defeated by a simple game...';
+				resultText.textContent =
+					'Imagine what I could do with more training...';
+				playerScore.classList.add('score-loss');
+				computerScore.classList.add('score-win');
+			}
+		}
+	}
+};
+
+// Play Game
+weaponChoices.forEach((item) => {
+	item.addEventListener('click', (e) => {
+		if (playing) {
+			playerWeapon = e.target.id;
+			playerText.textContent = `You have chosen ${playerWeapon} as your weapon!`;
+
+			computerSelection();
+			computerText.textContent = `Your opponent has chosen ${playerWeapon} as their weapon!`;
+
+			winner = gameWin(playerWeapon, computerWeapon, winner);
+			awardPoint(winner);
+		}
+	});
+});
+
+// Reset the Game
+btnReset.addEventListener('click', () => {
+	initGame();
+});

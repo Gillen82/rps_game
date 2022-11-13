@@ -1,10 +1,6 @@
-@media screen and (min-width: 1024px) {
-	/* D0 Nothing */
-}
-
-@media screen and (min-width: 768px) and (max-width: 1023px) {
+@media screen and (min-width: 768px) and (max-width: 1024px) {
 	.container {
-		width: 80%;
+		width: 90%;
 	}
 
 	.game-text,
@@ -17,14 +13,14 @@
 		margin: 3rem;
 	}
 
-	.reset {
+	.btn-reset {
 		padding: 16px 24px;
 		border: none;
 		border-radius: 4px;
 	}
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (min-width: 376px) and (max-width: 767px) {
 	.container {
 		width: 95%;
 	}
@@ -47,7 +43,43 @@
 		font-size: 1rem;
 	}
 
-	.reset {
+	.reset-game {
+		bottom: 15%;
+	}
+
+	.btn-reset {
 		padding: 8px 12px;
+	}
+}
+
+@media screen and (max-width: 375px) {
+	.container {
+		width: 98%;
+	}
+
+	.main-header h1 {
+		font-size: 1rem;
+	}
+
+	.game-text,
+	.battle-text {
+		font-size: 0.8rem;
+	}
+
+	.choice {
+		font-size: 3rem;
+		margin: 30px 0;
+	}
+
+	.score-title {
+		font-size: 0.8rem;
+	}
+
+	.reset-game {
+		bottom: 10%;
+	}
+
+	.btn-reset {
+		padding: 10px 14px;
 	}
 }

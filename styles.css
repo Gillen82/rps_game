@@ -127,9 +127,13 @@ body {
 	display: flex;
 	justify-content: center;
 	padding: 10px 0;
+	position: absolute;
+	left: 50%;
+	bottom: 5%;
+	transform: translateX(-50%);
 }
 
-.reset {
+.btn-reset {
 	padding: 6px 10px;
 	border: none;
 	border-radius: 2px;
@@ -138,7 +142,7 @@ body {
 	transition: all 0.2s ease;
 }
 
-.reset:hover {
+.btn-reset:hover {
 	cursor: pointer;
 	background-color: #b30009;
 }
