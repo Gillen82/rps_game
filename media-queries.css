@@ -1,4 +1,4 @@
-@media screen and (min-width: 768px) and (max-width: 1024px) {
+@media screen and (min-width: 960px) and (max-width: 1024px) {
 	.container {
 		width: 90%;
 	}
@@ -17,6 +17,38 @@
 		padding: 16px 24px;
 		border: none;
 		border-radius: 4px;
+	}
+}
+
+@media screen and (min-width: 768px) and (max-width: 959px) {
+	.container {
+		width: 95%;
+	}
+
+	.main-header h1 {
+		font-size: 1rem;
+	}
+
+	.game-text,
+	.battle-text {
+		font-size: 0.7;
+	}
+
+	.choice {
+		font-size: 3rem;
+		margin: 30px 0;
+	}
+
+	.score-title {
+		font-size: 0.8rem;
+	}
+
+	.reset-game {
+		bottom: 5%;
+	}
+
+	.btn-reset {
+		padding: 8px 12px;
 	}
 }
 
@@ -44,7 +76,7 @@
 	}
 
 	.reset-game {
-		bottom: 10%;
+		bottom: 7%;
 	}
 
 	.btn-reset {
