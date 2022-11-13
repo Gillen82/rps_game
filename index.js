@@ -121,7 +121,7 @@ weaponChoices.forEach((item) => {
 			playerText.textContent = `You have chosen ${playerWeapon} as your weapon!`;
 
 			computerSelection();
-			computerText.textContent = `Your opponent has chosen ${playerWeapon} as their weapon!`;
+			computerText.textContent = `Your opponent has chosen ${computerWeapon} as their weapon!`;
 
 			winner = gameWin(playerWeapon, computerWeapon, winner);
 			awardPoint(winner);
